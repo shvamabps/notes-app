@@ -46,7 +46,10 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [format, lint]
+    needs: [lint]
+    strategy:
+      matrix:
+        node-version: [18.x, 19.x, 20.x, 21.x]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -54,7 +57,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: ${{matrix.node-version  }}
 
       - name: Install dependencies
         run: yarn
@@ -64,7 +67,11 @@ jobs:
 
   test-and-deploy:
     runs-on: ubuntu-latest
-    needs: [format, lint, build]
+    needs: [build]
+    strategy:
+      matrix:
+        node-version: [18.x, 19.x, 20.x, 21.x]
+        mongodb-version: ['5.x', '6.x', '7.x']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -72,7 +79,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: ${{matrix.node-version  }}
 
       - name: Install dependencies
         run: yarn
