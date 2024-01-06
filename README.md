@@ -6,16 +6,20 @@ This is a notes app where search, indexing, rate limiting and other important co
 
 - Run the below command
 
-```bash
-$ docker compose up -d
-```
+  - To start the database service, run the below command:
 
-- To execute test cases, run the below command:
+  ```bash
+  $ docker compose up -d # to run database service.
+  ```
 
-```bash
-$ docker compose up db -d # to run database service.
-```
+  - To start the app
 
-```bash
-$ yarn test # to execute test cases.
-```
+  ```bash
+  $ yarn start # to start the app
+  ```
+
+  - To execute the test cases
+
+  ```bash
+  $ yarn test # to execute test cases.
+  ```
