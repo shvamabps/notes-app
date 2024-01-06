@@ -18,9 +18,9 @@ afterAll(async () => {
 let token: string = '',
   noteId: string = ''
 
-describe('POST /api/auth/signup', () => {
-  it('should return 201 CREATED', async () => {
-    const res = await request(app).post('/api/auth/signup').send({
+describe('POST /api/auth/login', () => {
+  it('should return 200 OK', async () => {
+    await request(app).post('/api/auth/signup').send({
       name: 'test',
       email: 'test@m.com',
       password: '123456',
@@ -28,13 +28,6 @@ describe('POST /api/auth/signup', () => {
       confirmPassword: '123456',
     })
 
-    const resp = JSON.parse(res.text)
-    expect(resp.statuscode).toBe(201)
-  })
-})
-
-describe('POST /api/auth/login', () => {
-  it('should return 200 OK', async () => {
     const res = await request(app).post('/api/auth/login').send({
       username: 'testing',
       password: '123456',

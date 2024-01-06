@@ -7,7 +7,6 @@ import app from '../../../src/app'
 config()
 
 beforeAll(async () => {
-  console.log('env', process.env)
   await mongoose.connect(process.env.MONGODB_URL!)
 })
 
