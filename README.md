@@ -12,6 +12,12 @@ This is a notes app where search, indexing, rate limiting and other important co
   $ docker compose up -d # to run database service.
   ```
 
+  - Install all the dependencies, run the below command:
+
+  ```bash
+  $ yarn # install dependencies.
+  ```
+
   - To start the app
 
   ```bash
