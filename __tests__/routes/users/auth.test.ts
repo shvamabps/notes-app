@@ -21,7 +21,7 @@ describe('POST /api/auth/signup', () => {
       name: 'test1221',
       email: 'test12121@m.com',
       password: '123456',
-      username: 'testing',
+      username: 'test-case-user-auth',
       confirmPassword: '123456',
     })
     const resp = JSON.parse(res.text)
@@ -32,7 +32,7 @@ describe('POST /api/auth/signup', () => {
 describe('POST /api/auth/login', () => {
   it('should return 200 OK', async () => {
     const res = await request(app).post('/api/auth/login').send({
-      username: 'testing',
+      username: 'test-case-user-auth',
       password: '123456',
     })
     const resp = JSON.parse(res.text)

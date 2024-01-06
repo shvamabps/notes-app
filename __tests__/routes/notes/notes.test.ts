@@ -24,12 +24,12 @@ describe('POST /api/auth/login', () => {
       name: 'test',
       email: 'test@m.com',
       password: '123456',
-      username: 'testing',
+      username: 'test-case-notes-creation',
       confirmPassword: '123456',
     })
 
     const res = await request(app).post('/api/auth/login').send({
-      username: 'testing',
+      username: 'test-case-notes-creation',
       password: '123456',
     })
     const resp = JSON.parse(res.text)
