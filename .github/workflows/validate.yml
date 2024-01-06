@@ -79,9 +79,3 @@ jobs:
           NODE_ENV: ${{ secrets.NODE_ENV }}
           PORT: ${{ secrets.PORT }}
         run: yarn test
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage

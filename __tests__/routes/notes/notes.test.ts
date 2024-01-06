@@ -51,11 +51,7 @@ describe('POST /api/notes', () => {
 
     const resp = JSON.parse(res.text)
 
-    console.log(resp.data)
-
     noteId = resp.data._id
-
-    console.log(noteId)
 
     expect(resp.statuscode).toBe(201)
   })
