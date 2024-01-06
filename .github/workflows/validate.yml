@@ -71,7 +71,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 19.x, 20.x, 21.x]
-        mongodb-version: ['5.x', '6.x', '7.x']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -83,9 +82,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn
-
-      - name: Build TypeScript
-        run: yarn build
 
       - name: Run database container
         run: docker compose up db -d
