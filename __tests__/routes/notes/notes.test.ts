@@ -49,9 +49,9 @@ describe('POST /api/notes', () => {
       .send(noteData)
       .set('Accept', 'application/json')
 
-    const resp = JSON.parse(res.text)
+    const resp = await JSON.parse(res.text)
 
-    noteId = resp.data._id
+    noteId = await resp.data._id
 
     expect(resp.statuscode).toBe(201)
   })
