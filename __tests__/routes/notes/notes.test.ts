@@ -102,3 +102,14 @@ describe('PUT /api/notes/:noteId', () => {
     expect(resp.statuscode).toBe(200)
   })
 })
+
+describe('DELETE /api/notes/:noteId', () => {
+  it('should return 200 OK', async () => {
+    const res = await request(app)
+      .delete(`/api/notes/${noteId}`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Accept', 'application/json')
+
+    expect(res.statusCode).toBe(204)
+  })
+})
