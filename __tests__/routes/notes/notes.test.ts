@@ -12,6 +12,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await mongoose.connection.dropDatabase()
+
   await mongoose.connection.close()
 })
 
@@ -50,7 +51,7 @@ describe('POST /api/notes', () => {
 
     const resp = JSON.parse(res.text)
 
-    noteId = resp.data[0]._id
+    noteId = resp.data._id
 
     expect(resp.statuscode).toBe(201)
   })
