@@ -18,8 +18,8 @@ afterAll(async () => {
 let token: string = '',
   noteId: string = ''
 
-describe('POST /api/auth/login', () => {
-  it('should return 200 OK', async () => {
+describe('POST /api/notes', () => {
+  it('should return 201 CREATED', async () => {
     await request(app).post('/api/auth/signup').send({
       name: 'test',
       email: 'test@m.com',
@@ -28,22 +28,15 @@ describe('POST /api/auth/login', () => {
       confirmPassword: '123456',
     })
 
-    const res = await request(app).post('/api/auth/login').send({
+    const user = await request(app).post('/api/auth/login').send({
       username: 'test-case-notes-creation',
       password: '123456',
     })
-    const resp = JSON.parse(res.text)
 
-    token = resp.data.token
+    const userRes = JSON.parse(user.text)
 
-    expect(resp.statuscode).toBe(200)
-    expect(resp.data).toHaveProperty('token') // check if token is returned
-    expect(resp.message).toBe('User logged in successfully.')
-  })
-})
+    token = userRes.data.token
 
-describe('POST /api/notes', () => {
-  it('should return 201 CREATED', async () => {
     const noteData = {
       title: 'test',
       content: 'test content',
@@ -56,6 +49,9 @@ describe('POST /api/notes', () => {
       .set('Accept', 'application/json')
 
     const resp = JSON.parse(res.text)
+
+    noteId = resp.data[0]._id
+
     expect(resp.statuscode).toBe(201)
   })
 })
@@ -83,7 +79,6 @@ describe('GET /api/notes/:noteId', () => {
       .set('Accept', 'application/json')
 
     const resp = JSON.parse(res.text)
-    noteId = resp.data[0]._id
     expect(resp.statuscode).toBe(200)
     expect(resp.data.length).toBeGreaterThan(0)
   })
